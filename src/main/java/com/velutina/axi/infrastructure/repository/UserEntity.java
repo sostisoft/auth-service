@@ -1,4 +1,4 @@
-package com.velutina.axi.model;
+package com.velutina.axi.infrastructure.repository;
 
 
 
@@ -10,7 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 
 @Entity
-public class User {
+public class UserEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

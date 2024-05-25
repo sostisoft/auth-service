@@ -1,5 +1,7 @@
-package com.velutina.axi.security;
+package com.velutina.axi.infrastructure.token;
 
+import com.velutina.axi.domain.ports.TokenGenerator;
+import com.velutina.axi.domain.User;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -8,12 +10,10 @@ import io.jsonwebtoken.SignatureException;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import com.velutina.axi.model.User;
-
 import java.util.Date;
 
 @Component
-public class JwtTokenProvider {
+public class JwtTokenProvider implements TokenGenerator {
 
     @Value("${app.jwtSecret}")
     private String jwtSecret;
@@ -21,6 +21,7 @@ public class JwtTokenProvider {
     @Value("${app.jwtExpirationInMs}")
     private int jwtExpirationInMs;
 
+    @Override
     public String generateToken(User user) {
         Date now = new Date();
         Date expiryDate = new Date(now.getTime() + jwtExpirationInMs);
@@ -38,15 +39,7 @@ public class JwtTokenProvider {
                 .compact();
     }
 
-    public String getUsernameFromToken(String token) {
-        Claims claims = Jwts.parser()
-                .setSigningKey(jwtSecret)
-                .parseClaimsJws(token)
-                .getBody();
-
-        return claims.getSubject();
-    }
-
+    @Override
     public boolean validateToken(String authToken) {
         try {
             parseClaims(authToken); 
@@ -57,6 +50,7 @@ public class JwtTokenProvider {
         }
     }
 
+    @Override
     public String processToken(String token) {
         try {
             Claims claims = parseClaims(token); 
@@ -81,20 +75,11 @@ public class JwtTokenProvider {
         } catch (SignatureException e) {
             System.out.println("Token inválido o no válido.");
             e.printStackTrace();
-            return null; // Devuelve null en caso de error de firma
+            return null;
         }
     }
 
-    private Claims parseClaims(String token) {
-        try {
-            return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody();
-        } catch (Exception ex) {
-            // Captura cualquier excepción durante el parsing del token
-            ex.printStackTrace(); // Imprime la traza de la excepción
-            return null; // Devuelve null en caso de error de validación del token
-        }
-    }
-
+    @Override
     public long getTimeLeftInToken(String token) {
         try {
             Claims claims = Jwts.parser()
@@ -104,15 +89,24 @@ public class JwtTokenProvider {
 
             Date expirationDate = claims.getExpiration();
             if (expirationDate == null) {
-                return 0; // El token no tiene fecha de expiración válida
+                return 0;
             }
 
             long currentTimeMillis = System.currentTimeMillis();
             long expirationTimeMillis = expirationDate.getTime();
             return expirationTimeMillis - currentTimeMillis;
         } catch (Exception ex) {
-            ex.printStackTrace(); // Maneja cualquier error al procesar el token
-            return 0; // Devuelve 0 si ocurre un error
+            ex.printStackTrace();
+            return 0;
+        }
+    }
+
+    private Claims parseClaims(String token) {
+        try {
+            return Jwts.parser().setSigningKey(jwtSecret).parseClaimsJws(token).getBody();
+        } catch (Exception ex) {
+            ex.printStackTrace();
+            return null;
         }
     }
 
