@@ -1,10 +1,8 @@
 package com.auth.infrastructure.repository;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+@Table(name = "User")
 @Entity
 public class UserEntity {
 
