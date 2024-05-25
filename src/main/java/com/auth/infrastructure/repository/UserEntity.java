@@ -1,9 +1,5 @@
 package com.auth.infrastructure.repository;
 
-
-
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -48,14 +44,8 @@ public class UserEntity {
         return encryptedPassword;
     }
 
-    public void setEncryptedPassword(String rawPassword) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        this.encryptedPassword = passwordEncoder.encode(rawPassword);
-    }
-
-    public boolean checkPassword(String rawPassword) {
-        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
-        return passwordEncoder.matches(rawPassword, this.encryptedPassword);
+    public void setEncryptedPassword(String encryptedPassword) {
+        this.encryptedPassword = encryptedPassword;
     }
 
     public String getRole() {
@@ -65,6 +55,4 @@ public class UserEntity {
     public void setRole(String role) {
         this.role = role;
     }
-
-    
 }

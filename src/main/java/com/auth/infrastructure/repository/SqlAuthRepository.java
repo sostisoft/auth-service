@@ -1,7 +1,7 @@
 package com.auth.infrastructure.repository;
 
-import com.auth.domain.ports.AuthRepository;
 import com.auth.domain.User;
+import com.auth.domain.ports.AuthRepository;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -31,6 +31,9 @@ public class SqlAuthRepository implements AuthRepository {
     }
 
     private User toDomain(UserEntity userEntity) {
+        if (userEntity == null) {
+            return null;
+        }
         return new User(
                 userEntity.getId(),
                 userEntity.getUsername(),
