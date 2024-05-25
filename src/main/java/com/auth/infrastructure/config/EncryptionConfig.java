@@ -1,4 +1,4 @@
-package com.velutina.axi.infrastructure.config;
+package com.auth.infrastructure.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

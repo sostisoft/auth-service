@@ -1,4 +1,4 @@
-package com.velutina.axi.infrastructure.controller;
+package com.auth.infrastructure.controller;
 
 
 public class LoginRequest {

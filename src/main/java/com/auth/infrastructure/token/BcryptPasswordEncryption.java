@@ -1,7 +1,7 @@
-package com.velutina.axi.infrastructure.token;
+package com.auth.infrastructure.token;
 
-import com.velutina.axi.domain.User;
-import com.velutina.axi.domain.ports.PasswordEncryption;
+import com.auth.domain.User;
+import com.auth.domain.ports.PasswordEncryption;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 

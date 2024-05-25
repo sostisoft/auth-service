@@ -1,6 +1,6 @@
-package com.velutina.axi.domain.ports;
+package com.auth.domain.ports;
 
-import com.velutina.axi.domain.User;
+import com.auth.domain.User;
 
 public interface PasswordEncryption {
 

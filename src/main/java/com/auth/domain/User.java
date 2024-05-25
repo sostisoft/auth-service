@@ -1,4 +1,4 @@
-package com.velutina.axi.domain;
+package com.auth.domain;
 
 public class User {
 

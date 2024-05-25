@@ -1,7 +1,7 @@
-package com.velutina.axi.infrastructure.repository;
+package com.auth.infrastructure.repository;
 
-import com.velutina.axi.domain.ports.AuthRepository;
-import com.velutina.axi.domain.User;
+import com.auth.domain.ports.AuthRepository;
+import com.auth.domain.User;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

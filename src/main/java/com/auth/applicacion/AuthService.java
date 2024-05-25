@@ -1,9 +1,9 @@
-package com.velutina.axi.applicacion;
+package com.auth.applicacion;
 
-import com.velutina.axi.domain.User;
-import com.velutina.axi.domain.ports.AuthRepository;
-import com.velutina.axi.domain.ports.PasswordEncryption;
-import com.velutina.axi.domain.ports.TokenGenerator;
+import com.auth.domain.User;
+import com.auth.domain.ports.AuthRepository;
+import com.auth.domain.ports.PasswordEncryption;
+import com.auth.domain.ports.TokenGenerator;
 import org.springframework.stereotype.Service;
 
 import java.util.Collections;

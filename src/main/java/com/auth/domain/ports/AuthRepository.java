@@ -1,5 +1,5 @@
-package com.velutina.axi.domain.ports;
-import com.velutina.axi.domain.User;
+package com.auth.domain.ports;
+import com.auth.domain.User;
 
 import java.util.List;
 

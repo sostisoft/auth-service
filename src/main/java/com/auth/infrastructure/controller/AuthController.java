@@ -1,8 +1,8 @@
-package com.velutina.axi.infrastructure.controller;
+package com.auth.infrastructure.controller;
 
 
-import com.velutina.axi.applicacion.AuthService;
-import com.velutina.axi.domain.User;
+import com.auth.domain.User;
+import com.auth.applicacion.AuthService;
 import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
