@@ -42,8 +42,7 @@ public class JwtTokenProvider implements TokenGenerator {
     @Override
     public boolean validateToken(String authToken) {
         try {
-            parseClaims(authToken); 
-            return true;
+            return parseClaims(authToken) != null;
         } catch (Exception ex) {
             ex.printStackTrace(); 
             return false;

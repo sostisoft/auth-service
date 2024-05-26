@@ -63,8 +63,8 @@ public class AuthController {
     private static UserControllerEntity toUserControllerEntity(User user) {
         return new UserControllerEntity(
                 user.getId(),
-                user.getEmail(),
                 user.getUsername(),
+                user.getEmail(),
                 user.getRole());
 
     }
